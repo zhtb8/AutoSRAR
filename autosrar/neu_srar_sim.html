@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Northeastern University SRAR - Course Entry</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: inline-block;
+            width: 150px;
+        }
+        input, select {
+            padding: 5px;
+            width: 200px;
+        }
+        #course-list {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .course-entry {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #CC0000;  /* NEU Red */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #990000;
+        }
+        .success-message {
+            color: green;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Northeastern University Self-Reported Academic Record</h1>
+    <h2>Course Entry Form</h2>
+
+    <div id="course-entry-form">
+        <div class="form-group">
+            <label for="startMonth">Start Month:</label>
+            <select id="startMonth">
+                <option value="">Select Month</option>
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="startYear">Start Year:</label>
+            <select id="startYear">
+                <option value="">Select Year</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="subjectArea">Subject Area:</label>
+            <select id="subjectArea">
+                <option value="">Select Subject</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="English">English</option>
+                <option value="Science">Science</option>
+                <option value="History">History</option>
+                <option value="Foreign Language">Foreign Language</option>
+                <option value="Physical Education">Physical Education</option>
+                <option value="Technology">Technology</option>
+                <option value="Arts">Arts</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="courseName">Course Name:</label>
+            <input type="text" id="courseName">
+        </div>
+
+        <div class="form-group">
+            <label for="courseLevel">Course Level:</label>
+            <select id="courseLevel">
+                <option value="">Select Level</option>
+                <option value="Regular">Regular</option>
+                <option value="Honors">Honors</option>
+                <option value="AP">AP</option>
+                <option value="IB">IB</option>
+                <option value="Dual Enrollment">Dual Enrollment</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="gradeScale">Grade Scale:</label>
+            <select id="gradeScale">
+                <option value="">Select Scale</option>
+                <option value="Letter">Letter</option>
+                <option value="Numeric">Numeric</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="grade">Grade:</label>
+            <select id="grade">
+                <option value="">Select Grade</option>
+                <option value="A+">A+</option>
+                <option value="A">A</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B">B</option>
+                <option value="B-">B-</option>
+                <option value="C+">C+</option>
+                <option value="C">C</option>
+                <option value="C-">C-</option>
+                <option value="D+">D+</option>
+                <option value="D">D</option>
+                <option value="D-">D-</option>
+                <option value="F">F</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="credits">Credits:</label>
+            <input type="number" id="credits" step="0.5" min="0" value="0.5">
+        </div>
+
+        <button id="add-course-btn">Add Course</button>
+        <button id="save">Save</button>
+        <div class="success-message">Course saved successfully!</div>
+    </div>
+
+    <div id="course-list">
+        <h3>Added Courses</h3>
+        <!-- Courses will be added here dynamically -->
+    </div>
+
+    <script>
+        // Add course to the list
+        document.getElementById('add-course-btn').addEventListener('click', function() {
+            const courseList = document.getElementById('course-list');
+            const courseEntry = document.createElement('div');
+            courseEntry.className = 'course-entry';
+            
+            const startMonth = document.getElementById('startMonth').value;
+            const startYear = document.getElementById('startYear').value;
+            const subject = document.getElementById('subjectArea').value;
+            const courseName = document.getElementById('courseName').value;
+            const courseLevel = document.getElementById('courseLevel').value;
+            const gradeScale = document.getElementById('gradeScale').value;
+            const grade = document.getElementById('grade').value;
+            const credits = document.getElementById('credits').value;
+            
+            courseEntry.textContent = `${startMonth} ${startYear} - ${courseName} - ${subject} - ${courseLevel} | ` +
+                                    `Grade: ${grade} (${credits} credits)`;
+            courseList.appendChild(courseEntry);
+            
+            // Clear form
+            document.getElementById('courseName').value = '';
+            document.getElementById('grade').selectedIndex = 0;
+            document.getElementById('credits').value = '0.5';
+        });
+
+        // Save button functionality
+        document.getElementById('save').addEventListener('click', function() {
+            const successMessage = document.querySelector('.success-message');
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html> 
