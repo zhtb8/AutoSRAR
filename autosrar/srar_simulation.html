@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SRAR - Course Entry</title>
+    <title>Virginia Tech SRAR - Course Entry</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,11 +15,14 @@
         }
         label {
             display: inline-block;
-            width: 120px;
+            width: 150px;
         }
         input, select {
             padding: 5px;
             width: 200px;
+        }
+        .checkbox-group {
+            margin-left: 150px;
         }
         #course-list {
             margin-top: 20px;
@@ -32,26 +35,30 @@
         }
         button {
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #861F41;  /* VT Maroon */
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #630F2F;
+        }
+        .success-message {
+            color: green;
+            display: none;
         }
     </style>
 </head>
 <body>
-    <h1>Self-Reported Academic Record</h1>
+    <h1>Virginia Tech Self-Reported Academic Record</h1>
     <h2>Course Entry Form</h2>
 
     <div id="course-entry-form">
         <div class="form-group">
-            <label for="grade-level">Grade Level:</label>
-            <select id="grade-level">
-                <option value="middle">Middle School</option>
+            <label for="gradeLevel">Grade Level:</label>
+            <select id="gradeLevel">
+                <option value="">Select Grade Level</option>
                 <option value="9">9th Grade</option>
                 <option value="10">10th Grade</option>
                 <option value="11">11th Grade</option>
@@ -60,56 +67,113 @@
         </div>
 
         <div class="form-group">
-            <label for="course-name">Course Name:</label>
-            <input type="text" id="course-name">
+            <label for="courseName">Course Name:</label>
+            <input type="text" id="courseName">
         </div>
 
         <div class="form-group">
             <label for="subject">Subject:</label>
             <select id="subject">
-                <option value="math">Mathematics</option>
-                <option value="english">English</option>
-                <option value="science">Science</option>
-                <option value="history">History</option>
-                <option value="language">Foreign Language</option>
-                <option value="pe">Physical Education</option>
-                <option value="tech">Technology</option>
-                <option value="arts">Arts</option>
-                <option value="other">Other</option>
+                <option value="">Select Subject</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="English">English</option>
+                <option value="Science">Science</option>
+                <option value="History">History</option>
+                <option value="Foreign Language">Foreign Language</option>
+                <option value="Physical Education">Physical Education</option>
+                <option value="Technology">Technology</option>
+                <option value="Arts">Arts</option>
+                <option value="Other">Other</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="credits">Credits:</label>
-            <input type="number" id="credits" step="0.5" min="0" max="1">
+            <label for="courseLevel">Course Level:</label>
+            <select id="courseLevel">
+                <option value="">Select Level</option>
+                <option value="Regular">Regular</option>
+                <option value="Honors">Honors</option>
+                <option value="AP">AP</option>
+                <option value="IB">IB</option>
+                <option value="Dual Enrollment">Dual Enrollment</option>
+            </select>
+        </div>
+
+        <!-- First Semester Section -->
+        <div class="form-group">
+            <h3>First Semester</h3>
+            <label for="semester1Grade">Grade:</label>
+            <select id="semester1Grade">
+                <option value="">Select Grade</option>
+                <option value="A+">A+</option>
+                <option value="A">A</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B">B</option>
+                <option value="B-">B-</option>
+                <option value="C+">C+</option>
+                <option value="C">C</option>
+                <option value="C-">C-</option>
+                <option value="D+">D+</option>
+                <option value="D">D</option>
+                <option value="D-">D-</option>
+                <option value="F">F</option>
+            </select>
         </div>
 
         <div class="form-group">
-            <label>Grade Type:</label>
-            <input type="radio" id="semester-option" name="grade-type" checked>
-            <label for="semester-option">Semester</label>
-            <input type="radio" id="full-year-option" name="grade-type">
-            <label for="full-year-option">Full Year</label>
+            <label for="semester1Credits">Credits:</label>
+            <input type="number" id="semester1Credits" value="0.5" readonly>
         </div>
 
-        <div id="semester-grades" class="form-group">
-            <div>
-                <label for="semester1-grade">Semester 1:</label>
-                <input type="text" id="semester1-grade">
-            </div>
-            <div>
-                <label for="semester2-grade">Semester 2:</label>
-                <input type="text" id="semester2-grade">
-            </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="semester1Online">
+            <label for="semester1Online">Taken online</label><br>
+            <input type="checkbox" id="semester1Summer">
+            <label for="semester1Summer">Taken during summer</label><br>
+            <input type="checkbox" id="semester1Retake">
+            <label for="semester1Retake">Repeat/retake of prior course</label>
         </div>
 
-        <div id="full-year-grade" class="form-group" style="display: none;">
-            <label for="full-year-grade-input">Full Year Grade:</label>
-            <input type="text" id="full-year-grade-input">
+        <!-- Second Semester Section -->
+        <div class="form-group">
+            <h3>Second Semester</h3>
+            <label for="semester2Grade">Grade:</label>
+            <select id="semester2Grade">
+                <option value="">Select Grade</option>
+                <option value="A+">A+</option>
+                <option value="A">A</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B">B</option>
+                <option value="B-">B-</option>
+                <option value="C+">C+</option>
+                <option value="C">C</option>
+                <option value="C-">C-</option>
+                <option value="D+">D+</option>
+                <option value="D">D</option>
+                <option value="D-">D-</option>
+                <option value="F">F</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="semester2Credits">Credits:</label>
+            <input type="number" id="semester2Credits" value="0.5" readonly>
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="semester2Online">
+            <label for="semester2Online">Taken online</label><br>
+            <input type="checkbox" id="semester2Summer">
+            <label for="semester2Summer">Taken during summer</label><br>
+            <input type="checkbox" id="semester2Retake">
+            <label for="semester2Retake">Repeat/retake of prior course</label>
         </div>
 
         <button id="add-course-btn">Add Course</button>
-        <button id="submit-course-btn">Submit Course</button>
+        <button id="save">Save</button>
+        <div class="success-message">Course saved successfully!</div>
     </div>
 
     <div id="course-list">
@@ -118,36 +182,42 @@
     </div>
 
     <script>
-        // Toggle between semester and full year grade inputs
-        document.getElementById('semester-option').addEventListener('change', function() {
-            document.getElementById('semester-grades').style.display = 'block';
-            document.getElementById('full-year-grade').style.display = 'none';
-        });
-
-        document.getElementById('full-year-option').addEventListener('change', function() {
-            document.getElementById('semester-grades').style.display = 'none';
-            document.getElementById('full-year-grade').style.display = 'block';
-        });
-
         // Add course to the list
         document.getElementById('add-course-btn').addEventListener('click', function() {
             const courseList = document.getElementById('course-list');
             const courseEntry = document.createElement('div');
             courseEntry.className = 'course-entry';
             
-            const courseName = document.getElementById('course-name').value;
-            const gradeLevel = document.getElementById('grade-level').value;
+            const gradeLevel = document.getElementById('gradeLevel').value;
+            const courseName = document.getElementById('courseName').value;
             const subject = document.getElementById('subject').value;
+            const courseLevel = document.getElementById('courseLevel').value;
+            const sem1Grade = document.getElementById('semester1Grade').value;
+            const sem2Grade = document.getElementById('semester2Grade').value;
             
-            courseEntry.textContent = `${gradeLevel} - ${courseName} - ${subject}`;
+            courseEntry.textContent = `${gradeLevel} - ${courseName} - ${subject} - ${courseLevel} | ` +
+                                    `Semester 1: ${sem1Grade} (0.5) | Semester 2: ${sem2Grade} (0.5)`;
             courseList.appendChild(courseEntry);
             
             // Clear form
-            document.getElementById('course-name').value = '';
-            document.getElementById('credits').value = '';
-            document.getElementById('semester1-grade').value = '';
-            document.getElementById('semester2-grade').value = '';
-            document.getElementById('full-year-grade-input').value = '';
+            document.getElementById('courseName').value = '';
+            document.getElementById('semester1Grade').selectedIndex = 0;
+            document.getElementById('semester2Grade').selectedIndex = 0;
+            document.getElementById('semester1Online').checked = false;
+            document.getElementById('semester1Summer').checked = false;
+            document.getElementById('semester1Retake').checked = false;
+            document.getElementById('semester2Online').checked = false;
+            document.getElementById('semester2Summer').checked = false;
+            document.getElementById('semester2Retake').checked = false;
+        });
+
+        // Save button functionality
+        document.getElementById('save').addEventListener('click', function() {
+            const successMessage = document.querySelector('.success-message');
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 3000);
         });
     </script>
 </body>
